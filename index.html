@@ -2,19 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>WebVR + ThreeJS Application</title>
+    <title>Web VR Sky</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
 
     <!-- required -->
-    <script src="./node_modules/three/build/three.min.js"></script>
-    <!-- needed for loading GLTF files -->
-    <script src="./node_modules/three/examples/js/loaders/GLTFLoader.js"></script>
-    <!-- needed for loading Truetype Fonts -->
-    <script src="./node_modules/three/examples/js/loaders/TTFLoader.js"></script>
-    <script src="./node_modules/three/examples/js/libs/opentype.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
 
     <!-- needed to enter VR -->
     <script src="./webvr.js"></script>
@@ -73,33 +68,6 @@
         const point = new THREE.PointLight(0xffffff, 1.5);
         point.position.set(0, 0, -7);
         stage.add(point);
-
-        const text_loader = new THREE.TTFLoader();
-        text_loader.load('./Poppins-Regular.ttf', data => {
-          const font = new THREE.FontLoader().parse(data);
-          const geo = new THREE.TextBufferGeometry(
-            'Click the red spheres to navigate',
-            {
-              font: font,
-              size: 0.5,
-              height: 0.2,
-              bevelEnabled: true,
-              bevelThickness: 0.2,
-              bevelSize: 0.05
-            }
-          );
-          geo.center();
-          const mesh = new THREE.Mesh(
-            geo,
-            new THREE.MeshStandardMaterial({
-              color: 'red',
-              metalness: 0.0,
-              roughness: 0.5
-            })
-          );
-          mesh.position.set(0, 3, -9);
-          stage.add(mesh);
-        });
 
         // enable stats visible inside VR
         stats = new VRStats(renderer);
